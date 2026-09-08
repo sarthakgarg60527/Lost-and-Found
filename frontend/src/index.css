@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 79 70 229; /* Indigo-600 */
+    --surface: 255 255 255;
+    --background: 248 250 252; /* Slate-50 */
+  }
+
+  /* 🌓 Dark Mode Variables */
+  .dark {
+    --background: 2 6 23; /* Slate-950 */
+    --surface: 15 23 42; /* Slate-900 */
+  }
+
+  body {
+    /* Fixed: Ab ye theme ke hisab se background badlega */
+    @apply bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-slate-200 antialiased transition-colors duration-500;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  /* --- CUSTOM SCROLLBAR (Theme Adaptive) --- */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors;
+  }
+
+  /* --- GLASSMORPHISM (Theme Adaptive) --- */
+  .glass {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/40 dark:border-slate-800 shadow-sm;
+  }
+
+  /* --- PREMIUM CARD HOVER --- */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-1 active:scale-[0.98];
+  }
+
+  /* --- HIDE SCROLLBAR BUT KEEP SCROLLING --- */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* --- INPUT FIELDS (Theme Adaptive) --- */
+  .input-minimal {
+    @apply w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 
+           focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 
+           outline-none transition-all duration-200 placeholder:text-slate-400 dark:text-white;
+  }
+
+  /* --- BUTTON MINIMAL --- */
+  .btn-primary {
+    @apply bg-slate-900 dark:bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold 
+           text-xs uppercase tracking-widest hover:bg-slate-800 dark:hover:bg-blue-500 
+           active:scale-95 transition-all shadow-lg shadow-slate-200 dark:shadow-none;
+  }
+}
+
+/* --- SMOOTH PAGE TRANSITIONS --- */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* --- SELECTION COLOR --- */
+::selection {
+  @apply bg-indigo-100 dark:bg-blue-900 text-indigo-900 dark:text-blue-100;
+}
